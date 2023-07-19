@@ -28,6 +28,21 @@ jobs:
           set -e
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
+          cat latest-domains.json
+
+      - name: Compare domains.json files
+        id: compare-domains
+        run: |
+          if diff -q domains.json latest-domains.json; then
+            echo "No changes in domains.json"
+            exit 0
+          else
+            echo "Changes detected in domains.json"
+          fi
+
+      - name: Update domains.json if different
+        id: update-domains
+        run: |
           cp latest-domains.json domains.json
           echo "Updated domains.json"
           git config --local user.email "action@github.com"
