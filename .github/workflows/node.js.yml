@@ -27,14 +27,6 @@ jobs:
           cat latest-domains.json
           cmp -s domains.json latest-domains.json || echo "::set-output name=changed::true"
 
-      - name: Check if domains.json changed
-        if: steps.get-latest-domains.outputs.changed == 'true'
-        run: |
-            echo "Domains.json changed"
-        else:
-            echo "Domains.json not changed"
-            exit 1
-
       - name: Update domains.json
         if: steps.get-latest-domains.outputs.changed == 'true'
         run: |
