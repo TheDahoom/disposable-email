@@ -6,7 +6,7 @@
   "types": "disposable.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andreis/disposable.git"
+    "url": "git+https://github.com/Dahoom152/disposable-email.git"
   },
   "author": "Andrei Simionescu <ansimionescu@gmail.com>",
   "license": "MIT",
