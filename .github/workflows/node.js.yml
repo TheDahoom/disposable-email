@@ -15,7 +15,6 @@ jobs:
 
       - name: Get current domains.json
         run: |
-          curl -s https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.json > domains.json
           echo "Current domains.json:"
           cat domains.json
 
@@ -26,7 +25,7 @@ jobs:
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
           cat latest-domains.json
-          echo "::set-output name=changed::$(cmp --silent current-domains.json latest-domains.json || echo true)"
+          echo "::set-output name=changed::$(cmp --silent domains.json latest-domains.json || echo true)"
 
       - name: Check if domains.json changed
         run: |
@@ -36,6 +35,12 @@ jobs:
             echo "Domains.json not changed"
             exit 1
           fi
+
+      - name: Update domains.json
+        if: steps.get-latest-domains.outputs.changed == 'true'
+        run: |
+          cp latest-domains.json domains.json
+          echo "Updated domains.json"
 
       - name: Bump version and publish package
         uses: JS-DevTools/npm-publish@v2
