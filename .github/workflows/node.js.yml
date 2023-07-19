@@ -25,11 +25,11 @@ jobs:
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
           cat latest-domains.json
-          echo "::set-output name=changed::$(cmp --silent domains.json latest-domains.json || echo true)"
+          cmp -s current-domains.json latest-domains.json || echo "::set-output name=changed::true"
 
       - name: Check if domains.json changed
         run: |
-          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "false" ]; then
+          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "true" ]; then
             echo "Domains.json changed"
           else
             echo "Domains.json not changed"
