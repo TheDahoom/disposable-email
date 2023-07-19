@@ -25,7 +25,7 @@ jobs:
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
           cat latest-domains.json
-          cmp -s current-domains.json latest-domains.json || echo "::set-output name=changed::true"
+          cmp -s domains.json latest-domains.json || echo "::set-output name=changed::true"
 
       - name: Check if domains.json changed
         run: |
