@@ -1,6 +1,6 @@
 {
   "name": "@dahoom/disposable-email",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Disposable email domains",
   "main": "disposable.js",
   "types": "disposable.d.ts",
