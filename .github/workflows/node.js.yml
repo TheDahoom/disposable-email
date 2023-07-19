@@ -11,28 +11,36 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3.5.3
-      with:
-        persist-credentials: false
 
-    - name: Check for updates in domains.json
-      run: |
-        curl https://raw.githack.com/disposable/disposable-email-domains/master/domains.json -o new_domains.json
-        if ! cmp domains.json new_domains.json > /dev/null 2>&1
-        then
-            mv new_domains.json domains.json
-            echo "UPDATE=true" >> $GITHUB_ENV
-        else
-            echo "UPDATE=false" >> $GITHUB_ENV
-        fi
+      - name: Get current domains.json
+        run: |
+          curl -s https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.json > current-domains.json
+          echo "Current domains.json:"
+          cat current-domains.json
 
-    - name: Bump version and publish if domains.json was updated
-      run: |
-        if [[ "${{ env.UPDATE }}" == "true" ]]
-        then
-            git config --local user.email "action@github.com"
-            git config --local user.name "GitHub Action"
-            git commit -am "Bump version"
-            git push
-            echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}"
-            npm publish
-        fi
+      - name: Get latest domains.json
+        id: get-latest-domains
+        run: |
+          set -e
+          curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
+          echo "Latest domains.json:"
+          cat latest-domains.json
+          echo "::set-output name=changed::$(cmp --silent current-domains.json latest-domains.json || echo true)"
+
+      - name: Check if domains.json changed
+        run: |
+          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "true" ]; then
+            echo "Domains.json changed"
+          else
+            echo "Domains.json not changed"
+            exit 1
+          fi
+
+      - name: Bump version and publish package
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          access: 'public'
+          tag: 'latest'
+          directory: '.'
+          version: 'patch'
