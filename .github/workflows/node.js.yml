@@ -28,10 +28,10 @@ jobs:
           cmp -s domains.json latest-domains.json || echo "::set-output name=changed::true"
 
       - name: Check if domains.json changed
+        if: steps.get-latest-domains.outputs.changed == 'true'
         run: |
-          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "true" ]; then
             echo "Domains.json changed"
-          else
+        else:
             echo "Domains.json not changed"
             exit 1
           fi
