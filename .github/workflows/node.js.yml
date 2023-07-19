@@ -50,7 +50,7 @@ jobs:
           echo "Updated domains.json"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "Bump version to %s"
+          git commit -am "Bump version"
           git push
           npm version patch -m "Bump version to %s"
         if: ${{ steps.compare-domains.outputs.changed }}== 'true'
