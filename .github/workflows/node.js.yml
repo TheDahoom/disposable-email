@@ -32,6 +32,7 @@ jobs:
         run: |
           cp latest-domains.json domains.json
           echo "Updated domains.json"
+          npm version patch -m "Bump version to %s"
 
       - name: Bump version and publish package
         uses: JS-DevTools/npm-publish@v2
@@ -39,5 +40,3 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           access: 'public'
           tag: 'latest'
-          directory: '.'
-          version: 'patch'
