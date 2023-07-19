@@ -15,9 +15,9 @@ jobs:
 
       - name: Get current domains.json
         run: |
-          curl -s https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.json > current-domains.json
+          curl -s https://raw.githubusercontent.com/disposable/disposable-email-domains/master/domains.json > domains.json
           echo "Current domains.json:"
-          cat current-domains.json
+          cat domains.json
 
       - name: Get latest domains.json
         id: get-latest-domains
