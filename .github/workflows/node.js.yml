@@ -53,10 +53,10 @@ jobs:
           git commit -am "Bump version"
           git push
           npm version patch -m "Bump version to %s"
-        if: ${{GITHUB_OUTPUT}} == 'true'
+        if: ${{ steps.compare-domains.outputs.changed == 'true' }}
 
-      - name: Bump version and publish package
+      - name: Bump version and publish package  
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
-        if: ${{GITHUB_OUTPUT}} == 'true'
+        if: ${{ steps.compare-domains.outputs.changed == 'true' }}
