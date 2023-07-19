@@ -30,6 +30,7 @@ jobs:
           echo "Latest domains.json:"
           cp latest-domains.json domains.json
           echo "Updated domains.json"
+          git commit -m "bumped version"
           npm version patch -m "Bump version to %s"
 
       - name: Bump version and publish package
