@@ -9,11 +9,8 @@ jobs:
   update_and_publish:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        persist-credentials: false
-        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout
+      uses: actions/checkout@v3.5.3
 
     - name: Check for updates in domains.json
       run: |
