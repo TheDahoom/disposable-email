@@ -25,18 +25,22 @@ jobs:
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
           cat latest-domains.json
-          cmp -s domains.json latest-domains.json || echo "::set-output name=changed::true"
+          if | cmp -s domains.json latest-domains.json ;
+            then
+              "UPDATE=true" >> $GITHUB_ENV
+            else
+              "UPDATE=false" >> $GITHUB_ENV
+              fi
 
       - name: Update domains.json
-        if: steps.get-latest-domains.outputs.changed == 'true'
         run: |
-          cp latest-domains.json domains.json
-          echo "Updated domains.json"
-          npm version patch -m "Bump version to %s"
+          if [[ "${{ env.UPDATE }}" == "true" ]]
+          then
+            cp latest-domains.json domains.json
+            echo "Updated domains.json"
+            npm version patch -m "Bump version to %s"
 
       - name: Bump version and publish package
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          access: 'public'
-          tag: 'latest'
