@@ -25,7 +25,7 @@ jobs:
           curl -s https://raw.githack.com/disposable/disposable-email-domains/master/domains.json > latest-domains.json
           echo "Latest domains.json:"
           cat latest-domains.json
-          if | cmp domains.json new_domains.json > /dev/null 2>&1
+          if | cmp domains.json latest_domains.json > /dev/null 2>&1
           then
             "UPDATE=true" >> $GITHUB_ENV
           else
