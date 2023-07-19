@@ -6,7 +6,8 @@
 npm i @dahoom/disposable-email
 ```
 
-Forked from https://github.com/disposable/disposable
+Forked from https://github.com/disposable/disposable 
+
 A collection of domains for disposable email services like [10MinuteMail](http://10minutemail.com) and [GuerrillaMail](https://www.guerrillamail.com). Also, some 🛠 to make your life easier.
 
 ### Credits
