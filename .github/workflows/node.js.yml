@@ -29,7 +29,7 @@ jobs:
 
       - name: Check if domains.json changed
         run: |
-          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "true" ]; then
+          if [ "${{ steps.get-latest-domains.outputs.changed }}" = "false" ]; then
             echo "Domains.json changed"
           else
             echo "Domains.json not changed"
