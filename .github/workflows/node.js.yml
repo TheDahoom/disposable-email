@@ -34,7 +34,6 @@ jobs:
         else:
             echo "Domains.json not changed"
             exit 1
-          fi
 
       - name: Update domains.json
         if: steps.get-latest-domains.outputs.changed == 'true'
