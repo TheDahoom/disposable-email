@@ -60,4 +60,5 @@ jobs:
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          strategy: upgrade
         if: ${{ steps.compare-domains.outputs.changed }} == 'true'
