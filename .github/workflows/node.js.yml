@@ -52,11 +52,12 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -am "Bump version"
           git push
-          npm version patch -m "Bump version to %s"
-        if: ${{ needs.update_domains.outputs.changed == 'true' }}
+        if: ${{ GITHUB_OUTPUT == 'true' }}
 
       - name: Bump version and publish package
         uses: JS-DevTools/npm-publish@v2
+        run: 
+          npm version patch -m "Bump version to %s"
         with:
           token: ${{ secrets.NPM_TOKEN }}
-        if: ${{ needs.update_domains.outputs.changed == 'true' }}
+        if: ${{ GITHUB_OUTPUT == 'true' }}
