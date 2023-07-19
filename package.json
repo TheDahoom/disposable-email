@@ -1,0 +1,17 @@
+{
+  "name": "@dahoom/disposable-email",
+  "version": "0.2.6",
+  "description": "Disposable email domains",
+  "main": "disposable.js",
+  "types": "disposable.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreis/disposable.git"
+  },
+  "author": "Andrei Simionescu <ansimionescu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreis/disposable/issues"
+  },
+  "homepage": "https://github.com/andreis/disposable#readme"
+}
