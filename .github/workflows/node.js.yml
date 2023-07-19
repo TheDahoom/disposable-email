@@ -35,10 +35,13 @@ jobs:
         run: |
           if diff -q domains.json latest-domains.json; then
             echo "No changes in domains.json"
-            exit 0
+            echo "::set-output name=changed::false"
           else
             echo "Changes detected in domains.json"
+            echo "::set-output name=changed::true"
           fi
+        outputs:
+          changed: ${{ steps.compare-domains.outputs.changed }}
 
       - name: Update domains.json if different
         id: update-domains
@@ -50,8 +53,10 @@ jobs:
           git commit -am "Bump version"
           git push
           npm version patch -m "Bump version to %s"
+        if: steps.compare-domains.outputs.changed == 'true'
 
       - name: Bump version and publish package
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
+        if: steps.compare-domains.outputs.changed == 'true'
