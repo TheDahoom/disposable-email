@@ -30,7 +30,10 @@ jobs:
           echo "Latest domains.json:"
           cp latest-domains.json domains.json
           echo "Updated domains.json"
-          git commit -m "bumped version"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Bump version"
+          git push
           npm version patch -m "Bump version to %s"
 
       - name: Bump version and publish package
