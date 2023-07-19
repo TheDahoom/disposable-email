@@ -48,11 +48,11 @@ jobs:
         run: |
           cp latest-domains.json domains.json
           echo "Updated domains.json"
+          npm version patch -m "Bump version to %s"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -am "Bump version"
           git push
-          npm version patch -m "Bump version to %s"
         if: ${{ steps.compare-domains.outputs.changed }}== 'true'
 
       - name: Bump version and publish package  
