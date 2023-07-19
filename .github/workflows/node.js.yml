@@ -16,7 +16,7 @@ jobs:
 
     - name: Check for updates in domains.json
       run: |
-        curl https://raw.githack.com/andreis/disposable/master/domains.json -o new_domains.json
+        curl https://raw.githack.com/disposable/disposable-email-domains/master/domains.json -o new_domains.json
         if ! cmp domains.json new_domains.json > /dev/null 2>&1
         then
             mv new_domains.json domains.json
