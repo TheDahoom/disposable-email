@@ -1,0 +1,37 @@
+name: Update domains.json and bump npm version
+
+on:
+  schedule:
+    - cron:  '0 */6 * * *'
+
+jobs:
+  update_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Check for updates in domains.json
+      run: |
+        curl https://raw.githack.com/andreis/disposable/master/domains.json -o new_domains.json
+        if ! cmp domains.json new_domains.json > /dev/null 2>&1
+        then
+            mv new_domains.json domains.json
+            echo "UPDATE=true" >> $GITHUB_ENV
+        else
+            echo "UPDATE=false" >> $GITHUB_ENV
+        fi
+
+    - name: Bump version and publish if domains.json was updated
+      run: |
+        if [[ "${{ env.UPDATE }}" == "true" ]]
+        then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -am "Bump version"
+            git push
+            echo "${{ secrets.NPM_TOKEN }}" | npm login --registry=https://registry.npmjs.org --scope=Dahoom152 --username=Dahoom152 --stdin
+            npm publish
+        fi
