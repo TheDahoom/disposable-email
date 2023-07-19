@@ -37,10 +37,10 @@ jobs:
         run: |
           if diff -q domains.json latest-domains.json; then
             echo "No changes in domains.json"
-            echo "::set-output name=changed::false"
+            echo "{changed}={false}" >> $GITHUB_OUTPUT
           else
             echo "Changes detected in domains.json"
-            echo "::set-output name=changed::true"
+            echo "{changed}={true}" >> $GITHUB_OUTPUT
           fi
 
       - name: Update domains.json if different
