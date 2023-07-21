@@ -48,6 +48,7 @@ jobs:
             git tag -am "Bump version"
             npm version patch -m "Bump version to %s"
             git push
+            npm publish --access public --registry=https://npm.package.github.com/:_authtoken=${{ GITHUB_TOKEN }}
           fi
 
       - name: Bump version and publish package  
