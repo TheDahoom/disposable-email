@@ -40,21 +40,14 @@ jobs:
             echo "No changes in domains.json"
             echo "{changed}={false}" >> $GITHUB_OUTPUT
           else
-            echo "Changes detected in domains.json"
-            echo "{changed}={true}" >> $GITHUB_OUTPUT
+            cp latest-domains.json domains.json
+            echo "Updated domains.json"
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -am "Bump version"
+            npm version patch -m "Bump version to %s"
+            git push
           fi
-
-      - name: Update domains.json if different
-        id: update-domains
-        run: |
-          cp latest-domains.json domains.json
-          echo "Updated domains.json"
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -am "Bump version"
-          npm version patch -m "Bump version to %s"
-          git push
-        if: ${{ steps.compare-domains.outputs.changed }}== 'true'
 
       - name: Bump version and publish package  
         uses: JS-DevTools/npm-publish@v2
