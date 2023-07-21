@@ -4,7 +4,8 @@
 [![Update](https://github.com/Dahoom152/disposable-email/actions/workflows/node.js.yml/badge.svg)](https://github.com/Dahoom152/disposable-email/actions/workflows/node.js.yml)
 [![npm version](https://img.shields.io/npm/v/@dahoom/disposable-email)](https://img.shields.io/npm/v/@dahoom/disposable-email)
 [![installs](https://img.shields.io/npm/dm/@dahoom/disposable-email)](https://npmtrends.com/@dahoom152/disposable-email)
-[![install size](https://packagephobia.com/badge?p=@dahoom/disposable-email@0.3.5)](https://packagephobia.com/result?p=@dahoom/disposable-email@0.3.5)
+[![install size](https://packagephobia.com/badge?p=@dahoom/disposable-email)](https://packagephobia.com/result?p=@dahoom/disposable-email)
+[![minzip size](https://img.shields.io/bundlephobia/minzip/%40dahoom%2Fdisposable-email)](https://img.shields.io/bundlephobia/minzip/%40dahoom%2Fdisposable-email)
 ```
 npm i @dahoom/disposable-email
 ```
