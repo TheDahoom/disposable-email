@@ -1,7 +1,19 @@
 {
   "name": "@dahoom/disposable-email",
   "version": "0.3.6",
-  "description": "Disposable email domains",
+  "keywords": [
+    "lightweight",
+    "typescript",
+    "disposable-email",
+    "no-dependencies",
+    "updated",
+    "disposable-emails",
+    "disposable-domains",
+    "github-actions",
+    "disposable-email-domains",
+    "disposable-email-blocker"
+  ],
+  "description": "a lightweight, no dependencies, regularly updated disposable email npm package with types forked from https://github.com/disposable/disposable",
   "main": "disposable.js",
   "types": "disposable.d.ts",
   "repository": {
