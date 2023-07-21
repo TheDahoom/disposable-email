@@ -1,4 +1,4 @@
-name: Update disposable email domains
+name: Update
 
 on:
   schedule:
