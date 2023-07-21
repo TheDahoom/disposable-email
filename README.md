@@ -2,7 +2,7 @@
 > a simple, no dependencies, regularly updated disposable email npm package with types forked from https://github.com/disposable/disposable
 
 [![Update](https://github.com/Dahoom152/disposable-email/actions/workflows/node.js.yml/badge.svg)](https://github.com/Dahoom152/disposable-email/actions/workflows/node.js.yml)
-[![npm version](https://badge.fury.io/js/@dahoom%2Fdisposable-email.svg)](https://badge.fury.io/js/@dahoom%2Fdisposable-email)
+[![npm version](https://img.shields.io/npm/v/@dahoom/disposable-email)](https://img.shields.io/npm/v/@dahoom/disposable-email)
 [![installs](https://img.shields.io/npm/dm/@dahoom/disposable-email)](https://npmtrends.com/@dahoom152/disposable-email)
 [![install size](https://packagephobia.com/badge?p=@dahoom/disposable-email@0.3.5)](https://packagephobia.com/result?p=@dahoom/disposable-email@0.3.5)
 ```
