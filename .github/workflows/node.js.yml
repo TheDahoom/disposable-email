@@ -45,7 +45,6 @@ jobs:
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -am "Bump version"
-            git tag -a "Bump version" -m "Bump version"
             npm version patch -m "Bump version to %s"
             git push
             npm publish --access public --registry=https://npm.package.github.com/
