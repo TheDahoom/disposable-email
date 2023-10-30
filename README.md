@@ -10,6 +10,8 @@
 npm i @dahoom/disposable-email
 ```
 
+*THIS REPO IS DEPRICATED, EMAIL LIST IS OUTDATED*
+
 I recommend using this serverside to avoid malicious workarounds
 
 ## Examples
